@@ -1,5 +1,8 @@
+//sorry I don't remember how to draw traces .... 
 int xPos = width/2;  // x position of the ball
 int yPos = height/2;
+//float[] ballX = new float[balls];
+//float[] ballY = new float[balls];
 int d = 40; // diameter of the ball;
 float xSpeed = random(4,6);
 float ySpeed = random(3,5);
