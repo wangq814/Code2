@@ -15,21 +15,19 @@ void draw() {
   background(#0AF7BE);
   
   if (drawParticles) {
-    //draw particles on screen
+   
     boolean allOffScreen = true;
     for (int i = 0; i<numParticles; i++) {
       parts[i].move();
-      //reset algorithm
+    
       if (parts[i].y < height) {
-        //if any particle is onscreen, don't reset
         allOffScreen = false;
       }
     }
     if (allOffScreen) {
-      //if all off screen, then reset the particles
+      
       drawParticles = false;
-      //buttonX = random(width);
-      //buttonY = random(height);
+     
     }
   }else{
     //rollover code
