@@ -2,12 +2,12 @@
   float x, y, xSpeed, ySpeed;
   float gravity = 1;
   float maxSpeed = 10;
-  color drawFill;
+
   
   Particle() {
-    x = buttonX;
-    y = buttonY;
-    drawFill = color(random(255), 0, 100 + random(155));
+    x = width/2;
+    y = height/3;
+   
     
    
     PVector speed = PVector.random2D();
@@ -21,7 +21,7 @@
     y+=ySpeed;
     ySpeed += gravity;
     
-    fill(drawFill);
-    ellipse(x, y, 20, 20);
+    fill(random(155),random(155),255);
+    ellipse(x, y, 15, 15);
   }
 }
