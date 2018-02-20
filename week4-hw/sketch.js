@@ -1,13 +1,11 @@
 
-
-
 let vehicles = [];
 
 
 function setup() {
   createCanvas(800, 600);
   for (var i=0; i<100; i++){
-    vehicles.push(new Vehicle())
+    var vehicles = new Vehicle(width/2, height/2);
   }
 
 }
@@ -25,12 +23,11 @@ function draw() {
 
 class Vehicle {
   constructor(width, height) {
-    this.position = createVector(width, height);
+    this.position = createVector(random(0,width), random(0,height));
     this.velocity = createVector(0,0);
     this.acceleration = createVector(0,0);
 
-    // (we can tweak these to make the Vehicle
-    // behave differently)
+    
     this.r = 6;
     this.maxSpeed = 4;
     this.maxForce = 0.1;
@@ -50,9 +47,7 @@ class Vehicle {
 
   update() {
     this.velocity.add(this.acceleration);
-    this.velocity.limit(this.maxSpeed);
     this.position.add(this.velocity)
-
     this.acceleration.mult(0);
   }
 
@@ -71,7 +66,7 @@ class Vehicle {
     vertex(-this.r, this.r*2);
     vertex(this.r, this.r*2);
     endShape(CLOSE);
-    
+
     resetMatrix();
   }
 
