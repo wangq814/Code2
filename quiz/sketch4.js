@@ -16,11 +16,11 @@ function draw(){
 	W = 100;
 	
 	
-	
+	if((mouseX>100)&&(mouseX<200)&&(mouseY>100)&&(mouseY<200)){
 	if (mouseIsPressed){
 	   background(255);
 	}
-	
+	}
 	fill(255,0,0);
 	rect(100,100,W,H);
 	

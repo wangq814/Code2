@@ -34,11 +34,22 @@ function draw(){
 	fill(R3,G3,B3);
 	rect(300,300,W,H);
 	
+	if(mouseIsPressed){
+    R1=0;
+	G1=255;
+	B1=0;
+	R2=0;
+	G2=255;
+	B2=255;
+	R3=255;
+	G3=0;
+	B3=255;
+	}
 	
 }
 
 
-function mouseClicked(){
+//function mouseClicked(){
 //	
 //	R1=0;
 //	G1=255;
@@ -49,5 +60,5 @@ function mouseClicked(){
 //	R3=255;
 //	G3=0;
 //	B3=255;
-	 console.log(mouseClicked());
-}
+//	 console.log(mouseClicked());
+//}
