@@ -4,15 +4,15 @@ let clouds1 = [];
 let numOfClouds1 = 10;
 let cloudImg1;
 let obstacles = [];
+let houses;
 let mySun;
 let ghost;
 let bg;
 let gh;
-let houses;
 let r,g,b;
-let h;
+let h = [];
 let api1 = 'http://api.openweathermap.org/data/2.5/weather?q=';
-let city = 'Miami';
+let city = 'New York';
 let unit = '&units=metric&'
 let apiKey1 = '&appid=3c46186d5e093892645e15f861e25d9c';
 
@@ -48,7 +48,9 @@ function setup(){
         clouds1.push(new Cloud());
     }  
     
-   
+     for(var k = 0; k < 3; k++){
+         h.push(new House());
+     }
      
     mySun = createSprite(700,100);
     var sunAnimation = mySun.addAnimation("rotation","https://image.ibb.co/gaZzKx/Asset_1.png");
@@ -56,7 +58,7 @@ function setup(){
     
 
     gh = new Ghost();
-    h = new House();
+    //h = new House();
 
 //    ghost = createSprite(50,height/2);
 //    var ghostAnimation = ghost.addAnimation("floating","https://image.ibb.co/iOeLsH/Asset_7.png", "https://image.ibb.co/iOeLsH/Asset_7.png", "https://image.ibb.co/i1CJex/Asset_8.png","https://image.ibb.co/i1CJex/Asset_8.png")
@@ -74,19 +76,20 @@ function setup(){
 
 
 function draw(){
-    
-    //background(160,230,255);
     background(r,g,b);
     r = 160;
     g = 230;
     b = 255;
-    image(bg,0,150,800,500);
     
+    image(bg,0,150,800,500);
     gh.display();
     
-    h.display();
-    h.moving();
-    h.update();
+    for (var k = 0; k < 2; k ++){
+    h[k].display();
+    h[k].moving();
+    h[k].update();
+    
+    }
     
 	if(data1&&data2){
         let aqi1 = data2.data[0].aqi;
@@ -100,11 +103,13 @@ function draw(){
             //clear sky day
             if(icon == "01d"){
                 //sun animation, light blue background 
+                 
                  drawSprite(mySun);
             }
             //few clouds
              if(icon == "02d"){
                 //sun animation, light blue background, few clouds moving
+                 
                  drawSprite(mySun);
        for (var j = 0; j < numOfClouds1; j++){
         clouds1[j].move();
@@ -116,17 +121,22 @@ function draw(){
             //scattered clouds
              if(icon == "03d"){
                 //light blue background, big clouds 
+                 
                  drawSprite(mySun);
         for (var j = 0; j < numOfClouds1; j++){
         clouds1[j].move();
         clouds1[j].display();
         clouds1[j].update();
+        drawSprite(mySun);
       
    }
             }
             //broken clouds
              if(icon == "04d"){
+                 
+                  drawSprite(mySun);
                 //ight blue background, many small clouds moving
+        
         for (var j = 0; j < numOfClouds1; j++){
         clouds1[j].move();
         clouds1[j].display();
@@ -137,6 +147,7 @@ function draw(){
             //shower rain
              if(icon == "09d"){
                 //greyish blue background, grey moving clouds, shower rain (set longer interval in update and more drops / faster speed), ghost with unbrella
+                
         for (var j = 0; j < numOfClouds1; j++){
         clouds1[j].move();
         clouds1[j].display();
@@ -147,6 +158,7 @@ function draw(){
             //day time rain
              if(icon == "10d"){
                 // greyish blue background, grey moving clouds, sun behind clouds, rain, ghost with unbrella
+        
         for (var j = 0; j < numOfClouds1; j++){
         clouds1[j].move();
         clouds1[j].display();
@@ -156,45 +168,65 @@ function draw(){
             //thunderstorm
              if(icon == "11d"){
                 //greyish blue background, grey clouds, thunder animation 
+                 
             }
             //snow
              if(icon == "13d"){
                 //greyish blue background, more clouds, snow array
+                 
             }
             //mist
              if(icon == "50d"){
                 //greyish background, less visibility, no clouds, no sun
+                
                  r =200;
                  g = 200;
                  b = 200;
                  
             }
-//            
-//            //night time
-//            //clear sky night
-//            if(icon == "01n"){
-//                //moon, stars animation, dark blue back ground 
-//            }
-//            //few clouds night
-//            if(icon == "02n"){
-//                //moon, stars animation, dark blue back ground, few clouds
-//            }
-//            //scattered clouds night
-//             if(icon == "03n"){
-//                //dark blue background, big clouds 
-//            }
-//            //broken clouds
-//             if(icon == "04n"){
-//                //dark blue background, many small clouds moving
-//            }
-//            //shower rain night
-//             if(icon == "09n"){
-//                //greyish blue background, grey moving clouds, shower rain (set longer interval in update and more drops / faster speed), ghost with unbrella
-//            }
+            
+            //night time
+            //clear sky night
+            if(icon == "01n"){
+                //moon, stars animation, dark blue back ground 
+                r = 37;
+                g = 53;
+                b = 86;
+            }
+            //few clouds night
+            if(icon == "02n"){
+                //moon, stars animation, dark blue back ground, few clouds
+                r = 37;
+                g = 53;
+                b = 86;
+            }
+            //scattered clouds night
+             if(icon == "03n"){
+                //dark blue background, big clouds 
+                r = 37;
+                g = 53;
+                b = 86;
+            }
+            //broken clouds
+             if(icon == "04n"){
+                //dark blue background, many small clouds moving
+                r = 37;
+                g = 53;
+                b = 86;
+            }
+            //shower rain night
+             if(icon == "09n"){
+                //greyish blue background, grey moving clouds, shower rain (set longer interval in update and more drops / faster speed), ghost with unbrella
+                r = 37;
+                g = 53;
+                b = 86;
+            }
           //night time rain
             if(icon == "10n"){
                 //moon, dark blue back ground, rain, ghost with unbrella
-                background(0);
+                r = 37;
+                g = 53;
+                b = 86;
                  console.log(aqi1);
                       for (var i = 0; i < numOfDrops; i++){
         
@@ -261,17 +293,14 @@ function draw(){
     
 }
 
-function Obstacle(x, size, horizon, color){ //https://www.youtube.com/watch?v=cIe3d2vwn7s
-    
+function Obstacle(x, size, color){  //???
     
     
     this.x = x;
-	this.y = horizon - size;
+	this.y = 250;
 
     this.size = size;
     this.color = color;
-    
-    this.onScreen = true;
     
     this.update = function(){
         this.onScreen = (this.x > -this.size);
@@ -360,7 +389,7 @@ function Ghost(){
    this.x = 50;
     this.y = 250;
    ghost = createSprite(this.x, this.y);
-    var ghostAnimation = ghost.addAnimation("floating","https://image.ibb.co/iOeLsH/Asset_7.png", "https://image.ibb.co/iOeLsH/Asset_7.png", "https://image.ibb.co/i1CJex/Asset_8.png","https://image.ibb.co/i1CJex/Asset_8.png")
+    var ghostAnimation = ghost.addAnimation("floating","https://image.ibb.co/iOeLsH/Asset_7.png", "https://image.ibb.co/iOeLsH/Asset_7.png", "https://image.ibb.co/iOeLsH/Asset_7.png", "https://image.ibb.co/i1CJex/Asset_8.png","https://image.ibb.co/i1CJex/Asset_8.png","https://image.ibb.co/i1CJex/Asset_8.png")
     ghost.setCollider("rectangle",0,0,60,80);
     
 this.display = function(){
@@ -380,13 +409,16 @@ this.jump = function(){
 function House(){
     this.x = 0;
     this.y = 320;
+    
     this.display = function(){
-image(houses,this.x,this.y,1772,180);
+      image(houses,this.x,this.y,1772,180);
     }
+    
     this.moving = function(){
-this.x -=1;    
+      this.x -=1;    
+        
     this.update = function(){
-        if(this.x < -1772){
+        if(this.x < -1772+800){
             this.x = 0;
         }
 }
